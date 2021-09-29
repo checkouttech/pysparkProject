@@ -1,0 +1,107 @@
+
+
+
+dataset 
+partitions 
+
+submit job like a jar file if possible ?
+
+docker run -p 8888:8888 -p 4040:4040 -v D:\sparkMounted:/home/jovyan/work --name spark jupyter/pyspark-notebook
+
+cache 
+presists
+
+# foreach line of RDD , take first and fourth element  , then sort by value of 4th element ( which is now 1 ) then take top 10 
+rdd1.map(lambda x:(x[0],int(x[3]))).sortBy(lambda x:x[1],ascending=False).take(10)
+
+
+# groupby  - groupby can be performed by reduceby and aggregateby functions which will be more faster and efficie
+# sum 
+
+
+# groupbykey
+rdd1.map(lambda x:(x[1],int(x[3]))).groupByKey().mapValues(lambda x: sum(x)).sortBy(lambda x:x[1],ascending=False).collect()
+
+# reducebykey 
+rdd1.map(lambda x:(x[1],int(x[3]))).reduceByKey(lambda x,y:x+y).sortBy(lambda x:x[1],ascending=False).collect()
+
+
+# filter 
+lambda x:(x[0],x[15])).filter(lambda x:float(x[1]) > 50.00).take(5)
+
+
+
+
+
+
+rdd.foreach([FUNCTION]): Performs a function for each item in an RDD.
+rdd.groupBy([CRITERA]): Performs a groupby aggregate.
+rdd.subtract(rdd2): Returns values from RDD #1 which also exist in RDD #2.
+rdd.subtractByKey(rdd2): Similar to the above, but matches key/value pairs specifically.
+rdd.sortBy([FUNCTION]): Sort an RDD by a given function.
+rdd.sortByKey(): Sort an RDD of key/value pairs in chronological order of the key name.
+rdd.join(rdd2): Joins two RDDs, even for RDDs which are lists! This is an interesting method in itself which is worth investigation in its own right, if you have the time.
+
+
+
+
+
+cache 
+
+dashboard -how to check and troubleshoot 
+------- 
+ Create pyspark project 
+run in yarn vs other cluster
+
+
+collect vs value 
+
+PySpark - Broadcast & Accumulator
+
+
+# if you want to run pyspark in yarn cluster
+pyspark --master yarn < script.py
+
+
+[vagrant@spark-cluster spark]$ ls /opt/spark/examples/src/main/python/
+
+
+MLlib
+
+
+Serializers
+
+
+
+
+
+sc = SparkContext.getOrCreate()
+
+/opt/spark/README.md
+
+
+
+from pyspark import SparkContext
+
+
+ sc = SparkContext("local", "First App")
+sc = SparkContext.getOrCreate()
+logFile = "file:/opt/spark/README.md"
+
+logData = sc.textFile(logFile).cache()
+
+numAs = logData.filter(lambda s: 'a' in s).count()
+
+numBs = logData.filter(lambda s: 'b' in s).count()
+
+
+print "Lines with a: %i, lines with b: %i" % (numAs, numBs)
+
+ 
+# Read the input file and Calculating words count
+text_file = sc.textFile("firstprogram.txt").cache()
+numKs = text_file.filter( lambda s: 'K' in s).count()
+numTs = text_file.filter( lambda s: 'T' in s).count()
+
+
+
