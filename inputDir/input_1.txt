@@ -1,0 +1,8 @@
+Here is the functioning of wholeTextFiles() function in Apache Spark:
+
+First of program reads and lists all the relevant files present in the given directory or paths. The wholeTextFiles() function runs this steps in parallel if the underlying file system supports. This is taken as input for the next step.
+ 
+Then __KEYWORD__ the program groups the original input into bigger chunks which is later split for fast processing. In the Spark API if can control the number of partitions while calling the wholeTextFiles()by specifying the minPartitions value thisiscommonword.
+ 
+When any transformation and actions are performed on the RDD the data is loaded into the memory for processing.
+
