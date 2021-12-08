@@ -6,7 +6,6 @@ def main():
     '''Program entry point'''
 
     # initialize spark context
-    #conf = SparkConf().setAppName("PySpark WordCount").setMaster("local")
     conf = SparkConf()
     conf.setAppName("PySpark WordCount")
     conf.setMaster("local")   # setMaster(spark://head_node:56887') 
@@ -32,26 +31,24 @@ def main():
     print ( "Count of lines -> %i " % logFileRDD.count()) 
 
     # Filter out non-empty lines from the loaded file 
-    #nonempty_lines = logFileRDD.filter(lambda x: len(x) > 0)
-    logFileRDD = logFileRDD.filter(lambda x: len(x) > 0)
+   logFileRDD = logFileRDD.filter(lambda x: len(x) > 0)
 
-    print ( "Count of line -> %i " % logFileRDD.count()) 
+    print ( "Count of non-empty lines -> %i " % logFileRDD.count()) 
 
 
     # Only consider lines that have special word 
     # A new RDD is returned containing the elements, which satisfies the function inside the filter.
-    logFileRDD = logFileRDD.filter(lambda x : "foo" in x ) 
+    logFileRDD = logFileRDD.filter(lambda x : "__KEYWORD__" in x ) 
 
     # Number of elements in the RDD is returned.
-    print ( "Number of lines RDD -> %i" % (logFileRDD.count()) ) 
+    print ( "Number of lines with keyword -> %i" % (logFileRDD.count()) ) 
 
     print ( logFileRDD.collect()) 
 
-    #Split the logFileRDD on space
+    # Split the logFileRDD on space
     words = logFileRDD.flatMap(lambda x: x.split(' '))
 
 
-     
 
 
     # sort by some value 
