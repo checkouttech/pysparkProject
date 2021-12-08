@@ -11,8 +11,9 @@ print "Stored data -> %s" % (data)
 
 elem = words_new.value[2] 
 
-print "Printing a particular element in RDD -> %s" % (elem)
+print ("Printing a particular element in RDD -> %s" % (elem)) 
 
+print ( elem ) 
 
 
 

@@ -1,4 +1,4 @@
-from pyspark import SparkContext 
+from pyspark import SparkContext
 sc = SparkContext("local", "Map app")
 words = sc.parallelize (
    ["scala", 
@@ -17,9 +17,6 @@ words_map = words.map(lambda x: (x, 1))
 mapping = words_map.collect()
 
 print "Key value pair -> %s" % (mapping)
-
-
-
 
 
 
