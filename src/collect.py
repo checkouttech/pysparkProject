@@ -1,8 +1,11 @@
+
+# returns list of elemens in the rdd
+
 from pyspark import SparkContext 
 
-sc = SparkContext ( "local", "Collect app" ) 
+sc = SparkContext("local", "Count app") 
 
-words = sc.parallelize ( 
+words = sc.parallelize (
    ["scala", 
    "java", 
    "hadoop", 
@@ -13,9 +16,9 @@ words = sc.parallelize (
    "pyspark and spark"]
 ) 
 
-coll = words.collect()
+collectionsOfWords = words.collect() 
 
-print ( "Elements in RDD -> %s " % (coll) ) 
+print ("Elements in RDD -> %s ", collectionsOfWords ) 
 
 
 
